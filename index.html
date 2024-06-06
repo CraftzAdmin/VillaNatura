@@ -37,31 +37,31 @@
             var detalhes = '';
 
             if (consumo <= 10) {
-                subtotal = 76.68;
-                detalhes += `<tr><td>0 - 10</td><td>${consumo}m³</td><td>R$ 76.68 (fixo)</td><td>R$ ${subtotal.toFixed(2)}</td></tr>`;
+                subtotal = 71.70;
+                detalhes += `<tr><td>0 - 10</td><td>${consumo}m³</td><td>R$ 71.70 (fixo)</td><td>R$ ${subtotal.toFixed(2)}</td></tr>`;
             } else {
-                detalhes += `<tr><td>0 - 10</td><td>10m³</td><td>R$ 76.68 (fixo)</td><td>R$ 76.68</td></tr>`;
-                subtotal = 76.68;
+                detalhes += `<tr><td>0 - 10</td><td>10m³</td><td>R$ 71.70 (fixo)</td><td>R$ 71.70</td></tr>`;
+                subtotal = 71.70;
 
                 if (consumo <= 20) {
                     var extraM3 = consumo - 10;
-                    var extra = extraM3 * 12.02;
+                    var extra = extraM3 * 11.24;
                     subtotal += extra;
-                    detalhes += `<tr><td>11 - 20</td><td>${extraM3}m³</td><td>R$ 12.02</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
+                    detalhes += `<tr><td>11 - 20</td><td>${extraM3}m³</td><td>R$ 11.24</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
                 } else {
-                    var extra = 10 * 12.02;
+                    var extra = 10 * 11.24;
                     subtotal += extra;
-                    detalhes += `<tr><td>11 - 20</td><td>10m³</td><td>R$ 12.02</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
+                    detalhes += `<tr><td>11 - 20</td><td>10m³</td><td>R$ 11.24</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
 
                     if (consumo <= 50) {
                         extraM3 = consumo - 20;
-                        extra = extraM3 * 29.96;
+                        extra = extraM3 * 28.00;
                         subtotal += extra;
-                        detalhes += `<tr><td>21 - 50</td><td>${extraM3}m³</td><td>R$ 29.96</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
+                        detalhes += `<tr><td>21 - 50</td><td>${extraM3}m³</td><td>R$ 28.00</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
                     } else {
-                        extra = 30 * 29.96;
+                        extra = 30 * 28.00;
                         subtotal += extra;
-                        detalhes += `<tr><td>21 - 50</td><td>30m³</td><td>R$ 29.96</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
+                        detalhes += `<tr><td>21 - 50</td><td>30m³</td><td>R$ 28.00</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
                         extraM3 = consumo - 50;
                         extra = extraM3 * 33.00;
                         subtotal += extra;
