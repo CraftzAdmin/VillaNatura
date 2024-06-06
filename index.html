@@ -10,6 +10,13 @@
     <div class="container mt-5">
         <h2>Calculadora de Consumo - Villa Natura</h2>
         <div class="form-group">
+            <label for="tarifa">Selecione a Tabela de Tarifas:</label>
+            <select id="tarifa" class="form-control">
+                <option value="antiga">Nova Tabela - 10/05</option>
+                <option value="nova">Tabela Antiga</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="consumo">Insira o consumo em m³:</label>
             <input type="number" id="consumo" class="form-control" placeholder="Digite o consumo em m³">
         </div>
@@ -32,40 +39,58 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function calcularCusto() {
+            var tabela = document.getElementById('tarifa').value;
             var consumo = document.getElementById('consumo').value;
+            var tarifas = {
+                nova: {
+                    fixo: 71.70,
+                    faixa1: 11.24,
+                    faixa2: 28.00,
+                    faixa3: 30.86  // Assumindo que a nova tabela usa o mesmo valor da última atualização para além de 50m³
+                },
+                antiga: {
+                    fixo: 76.68,
+                    faixa1: 12.02,
+                    faixa2: 29.96,
+                    faixa3: 33.00
+                }
+            };
+            var tarifa = tarifas[tabela];
             var subtotal = 0;
             var detalhes = '';
 
             if (consumo <= 10) {
-                subtotal = 71.70;
-                detalhes += `<tr><td>0 - 10</td><td>${consumo}m³</td><td>R$ 71.70 (fixo)</td><td>R$ ${subtotal.toFixed(2)}</td></tr>`;
+                subtotal = tarifa.fixo;
+                detalhes += `<tr><td>0 - 10</td><td>${consumo}m³</td><td>R$ ${tarifa.fixo.toFixed(2)} (fixo)</td><td>R$ ${subtotal.toFixed(2)}</td></tr>`;
             } else {
-                detalhes += `<tr><td>0 - 10</td><td>10m³</td><td>R$ 71.70 (fixo)</td><td>R$ 71.70</td></tr>`;
-                subtotal = 71.70;
+                detalhes += `<tr><td>0 - 10</td><td>10m³</td><td>R$ ${tarifa.fixo.toFixed(2)} (fixo)</td><td>R$ ${tarifa.fixo.toFixed(2)}</td></tr>`;
+                subtotal = tarifa.fixo;
+                var extraM3 = 0, extra = 0;
 
                 if (consumo <= 20) {
-                    var extraM3 = consumo - 10;
-                    var extra = extraM3 * 11.24;
+                    extraM3 = consumo - 10;
+                    extra = extraM3 * tarifa.faixa1;
                     subtotal += extra;
-                    detalhes += `<tr><td>11 - 20</td><td>${extraM3}m³</td><td>R$ 11.24</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
+                    detalhes += `<tr><td>11 - 20</td><td>${extraM3}m³</td><td>R$ ${tarifa.faixa1.toFixed(2)}</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
                 } else {
-                    var extra = 10 * 11.24;
+                    extra = 10 * tarifa.faixa1;
                     subtotal += extra;
-                    detalhes += `<tr><td>11 - 20</td><td>10m³</td><td>R$ 11.24</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
+                    detalhes += `<tr><td>11 - 20</td><td>10m³</td><td>R$ ${tarifa.faixa1.toFixed(2)}</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
 
                     if (consumo <= 50) {
                         extraM3 = consumo - 20;
-                        extra = extraM3 * 28.00;
+                        extra = extraM3 * tarifa.faixa2;
                         subtotal += extra;
-                        detalhes += `<tr><td>21 - 50</td><td>${extraM3}m³</td><td>R$ 28.00</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
+                        detalhes += `<tr><td>21 - 50</td><td>${extraM3}m³</td><td>R$ ${tarifa.faixa2.toFixed(2)}</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
                     } else {
-                        extra = 30 * 28.00;
+                        extra = 30 * tarifa.faixa2;
                         subtotal += extra;
-                        detalhes += `<tr><td>21 - 50</td><td>30m³</td><td>R$ 28.00</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
+                        detalhes += `<tr><td>21 - 50</td><td>30m³</td><td>R$ ${tarifa.faixa2.toFixed(2)}</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
+                        
                         extraM3 = consumo - 50;
-                        extra = extraM3 * 33.00;
+                        extra = extraM3 * tarifa.faixa3;
                         subtotal += extra;
-                        detalhes += `<tr><td>51+</td><td>${extraM3}m³</td><td>R$ 33.00</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
+                        detalhes += `<tr><td>51 - 1000</td><td>${extraM3}m³</td><td>R$ ${tarifa.faixa3.toFixed(2)}</td><td>R$ ${extra.toFixed(2)}</td></tr>`;
                     }
                 }
             }
