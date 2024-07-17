@@ -646,7 +646,7 @@ function processGasData(data) {
         <table class="table table-striped table table-sm table-hover">
           <thead class="thead-dark">
             <tr>
-              ${headers.map(header => `<th>${header}</th>`).join('')}
+              ${headersGas.map(header => `<th>${header}</th>`).join('')}
             </tr>
           </thead>
           <tbody>${unitDataGas}</tbody>
@@ -780,7 +780,7 @@ function processGasData(data) {
         <table class="table table-striped table table-sm">
           <thead class="thead-dark">
             <tr>
-              ${headers.map(header => `<th>${header}</th>`).join('')}
+              ${headersGas.map(header => `<th>${header}</th>`).join('')}
             </tr>
           </thead>
           <tbody>
@@ -808,7 +808,7 @@ function processGasData(data) {
         <table class="table table-striped table table-sm">
           <thead class="thead-dark">
             <tr>
-              ${headers.map(header => `<th>${header}</th>`).join('')}
+              ${headersGas.map(header => `<th>${header}</th>`).join('')}
             </tr>
           </thead>
           <tbody>
