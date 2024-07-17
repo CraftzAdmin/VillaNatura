@@ -119,6 +119,8 @@ function processWaterData(data) {
   let unidadeData = {};
   processedWaterData = []; // Limpar dados processados anteriores
 
+  const headers = ['Apto', 'Bloco', 'Tipo', '🕒Anterior', '🕒Atual', '🕒Volume', '💲Consumido', '💲Total', 'Volume🧾', 'Custo🧾', '✅Volume', '✅Custo'];
+
   let quantidadeApartamentosAgua = validarQuantidadeApartamentosAgua(data);
 
   function validarQuantidadeApartamentosAgua(data) {
@@ -490,6 +492,8 @@ function processGasData(data) {
   let totalValueGas = 0;
   let totalM3Gas = 0;
   processedGasData = []; // Limpar dados processados anteriores
+
+   const headers = ['Apto', 'Bloco', 'Tipo', '🕒Anterior', '🕒Atual', '🕒Volume', '💲Consumido', '💲Total', 'Volume🧾', 'Custo🧾', '✅Volume', '✅Custo'];
 
   let quantidadeApartamentosGasObj = validarQuantidadeApartamentosGas(data);
   let quantidadeApartamentosGas = quantidadeApartamentosGasObj.apartamentos;
