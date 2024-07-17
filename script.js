@@ -1,4 +1,6 @@
 // Variáveis globais para configuração
+const numUnidades = 184; // Defina o número correto de unidades
+const numUnidadesGas = 185; // Defina o número correto de unidades de gás
 let tabelaVigente = "";
 let rates = {};
 
