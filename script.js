@@ -492,8 +492,7 @@ function processGasData(data) {
   let totalValueGas = 0;
   let totalM3Gas = 0;
   processedGasData = []; // Limpar dados processados anteriores
-
-   const headers = ['Apto', 'Bloco', 'Tipo', '🕒Anterior', '🕒Atual', '🕒Volume', '💲Consumido', '💲Total', 'Volume🧾', 'Custo🧾', '✅Volume', '✅Custo'];
+  const headers = ['Apto', 'Bloco', 'Tipo', '🕒Anterior', '🕒Atual', '🕒Volume', '💲Consumido', '💲Total', 'Volume🧾', 'Custo🧾', '✅Volume', '✅Custo'];
 
   let quantidadeApartamentosGasObj = validarQuantidadeApartamentosGas(data);
   let quantidadeApartamentosGas = quantidadeApartamentosGasObj.apartamentos;
