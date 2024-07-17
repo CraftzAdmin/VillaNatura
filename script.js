@@ -1,6 +1,9 @@
 // Variáveis globais para configuração
 let tabelaVigente = "";
 let rates = {};
+let processedWaterData = [];
+let processedGasData = [];
+let averageValuePerM3Gas = 0;
 
 // Função para carregar e validar o arquivo config.json
 document.getElementById('file-input-config').addEventListener('change', handleFileConfig, false);
